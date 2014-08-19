@@ -27,6 +27,8 @@ public:
 	void renameTask(Task& task, std::string name);
 	void deleteTask(Task& task);
 	void setTaskWorkDoneAmount(Task& task, int amount);
+	void setTaskStatus(Task* task, ScrumWorkStatus::WorkStatus* status);
+	void setTaskInitialEffortEstimation(Task& task, int amount);
 
 	void addResponsibleToTask(Task& task, IResponsible* responsible);
 	void removeResponsibleFromTask(Task& task, IResponsible* responsible);

@@ -22,6 +22,8 @@ class Story {
 
 	string includeEstimationToDescription();
 	string includeTaskCountToDescription();
+
+	string determineStatusBasedOnTaskStatuses();
 public:
 	Story(string name, int initialEffortEstimation);
 	virtual ~Story();
@@ -33,6 +35,10 @@ public:
 
 	void setStatus(ScrumWorkStatus::WorkStatus* status) {
 		_status = status;
+	}
+
+	void setInitialEffortEstimation(int initialEffortEstimation) {
+		_initialEffortEstimation = initialEffortEstimation;
 	}
 };
 

@@ -48,6 +48,7 @@ public:
   void setWorkDoneAmount(int amount);
   string describeStatus();
   void setStatus(ScrumWorkStatus::WorkStatus* status);
+  void setInitialEffortEstimation(int amount) {_initialEstimation = amount;};
 
   bool operator== (Task& compareto) {
   	return _name.compare(compareto._name) == 0;

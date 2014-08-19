@@ -42,6 +42,12 @@ TEST_F(UserTest, UserCanCreateTaskWithInitialEstimation)
 	ASSERT_EQ(5, task->tellInitialEstimation());
 }
 
+TEST_F(UserTest, UserCanEditTaskInitialEffortEstimation) {
+  Task* task  = user->createTask("Some task", 1, "", "");
+	user->setTaskInitialEffortEstimation(*task, 3);
+	ASSERT_STREQ("Some task | (0/3)", task->describe().c_str());
+}
+
 TEST_F(UserTest, UserCanCreateTaskWithFeatureID)
 {
   Task* task = user->createTask("Task1", 5, "LTE1757-a-e3");
@@ -217,9 +223,8 @@ TEST_F(UserTest, UserCanChangeStoryStatusToCompleted) {
 	ASSERT_STREQ("Completed", story->tellStatus().c_str());
 }
 
-//just story related, no user needed
-TEST(StoryTest, EmptyStoryHasStatusOfNoTasks) {
-	Story story("Buy whiskey for birthday guy", 2);
-
-	ASSERT_STREQ("No tasks", story.tellStatus().c_str());
+TEST_F(UserTest, UserEditStoryInitialEffortEstimation) {
+  Story* story = user->createStory("Buy whiskey for birthday guy", 2);
+  user->setStoryInitialEffortEstimation(story, 3);
+	ASSERT_STREQ("Buy whiskey for birthday guy (3) | Tasks: 0", story->describe().c_str());
 }

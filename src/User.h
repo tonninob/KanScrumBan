@@ -23,11 +23,11 @@ class Story;
 class User : public IResponsible, public IProductLineOperator
 {
 protected:
-	TaskInteractor& _actor;
+	TaskInteractor& _taskActor;
 	StoryInteractor& _storyActor;
 	std::string _name;
 public:
-	User(TaskInteractor& actor, StoryInteractor& storyActor, std::string name) : _actor(actor), _name(name), _storyActor(storyActor) {};
+	User(TaskInteractor& actor, StoryInteractor& storyActor, std::string name) : _taskActor(actor), _storyActor(storyActor), _name(name) {};
 	Task* createTask(std::string name, int initialEstimation=0, std::string featureId="", std::string internalId="", Story* story=NULL);
 	void renameTask(Task& task, std::string name);
 	void addResponsibleToTask(Task& task, IResponsible* responsible);
@@ -35,6 +35,7 @@ public:
 	void deleteTask(Task& task);
 	void setTaskStatus(Task* task, ScrumWorkStatus::WorkStatus* status);
 	void setTaskWorkDoneAmount(Task& task, int amount);
+	void setTaskInitialEffortEstimation(Task& task, int amount);
 
 	virtual void assignTaskToProductLine(Task* task, ProductLine& line, ProductLineInteractor& actor);
 
@@ -45,6 +46,7 @@ public:
 	void addTaskToStory(Story* story, Task* task);
 	void removeTaskFromStory(Story* story, Task* task);
 	void completeStory(Story* story);
+	void setStoryInitialEffortEstimation(Story* story, int amount);
 };
 
 

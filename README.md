@@ -12,4 +12,6 @@ support growing number of users) and one of the possible server side solutions
 could include the ZeroMQ framework which provides an easy way to link to this 
 C++ library. Nothing is decided yet though. 
 
+See unit tests under folder tests/ for complete specification of functionality.
 Unit tests are written with Google Test.
+

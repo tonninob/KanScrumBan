@@ -22,3 +22,12 @@ void StoryInteractor::addTaskToStory(Story* story, Task* task) {
 void StoryInteractor::removeTaskFromStory(Story* story, Task* task) {
 	story->removeTask(task);
 }
+
+void StoryInteractor::setStoryInitialEffortEstimation(Story* story, int amount) {
+	story->setInitialEffortEstimation(amount);
+}
+
+void StoryInteractor::setStoryStatus(Story* story,
+		ScrumWorkStatus::WorkStatus* status) {
+	story->setStatus(status);
+}

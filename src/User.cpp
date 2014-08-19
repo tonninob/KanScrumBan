@@ -11,7 +11,7 @@
 
 Task* User::createTask(std::string name, int initialEstimation,
 											 std::string featureId, std::string internalId, Story* story) {
-	Task* task = _actor.createTask(name, initialEstimation, featureId, internalId);
+	Task* task = _taskActor.createTask(name, initialEstimation, featureId, internalId);
 	if (story) {
 		addTaskToStory(story, task);
 	}
@@ -19,23 +19,23 @@ Task* User::createTask(std::string name, int initialEstimation,
 }
 
 void User::renameTask(Task& task, std::string name) {
-	_actor.renameTask(task, name);
+	_taskActor.renameTask(task, name);
 }
 
 void User::deleteTask(Task& task) {
-	_actor.deleteTask(task);
+	_taskActor.deleteTask(task);
 }
 
 void User::setTaskWorkDoneAmount(Task& task, int amount) {
-	_actor.setTaskWorkDoneAmount(task, amount);
+	_taskActor.setTaskWorkDoneAmount(task, amount);
 }
 
 void User::addResponsibleToTask(Task& task, IResponsible* responsible) {
-	_actor.addResponsibleToTask(task, responsible);
+	_taskActor.addResponsibleToTask(task, responsible);
 }
 
 void User::removeResponsibleFromTask(Task& task, IResponsible* responsible) {
-	_actor.removeResponsibleFromTask(task, responsible);
+	_taskActor.removeResponsibleFromTask(task, responsible);
 }
 
 bool User::operator== (IResponsible& compareto) {
@@ -60,9 +60,17 @@ void User::removeTaskFromStory(Story* story, Task* task) {
 }
 
 void User::completeStory(Story* story) {
-	story->setStatus(new ScrumWorkStatus::Completed);
+	_storyActor.setStoryStatus(story, new ScrumWorkStatus::Completed);
 }
 
 void User::setTaskStatus(Task* task, ScrumWorkStatus::WorkStatus* status) {
-	task->setStatus(status);
+	_taskActor.setTaskStatus(task, status);
+}
+
+void User::setTaskInitialEffortEstimation(Task& task, int amount) {
+	_taskActor.setTaskInitialEffortEstimation(task, amount);
+}
+
+void User::setStoryInitialEffortEstimation(Story* story, int amount) {
+	_storyActor.setStoryInitialEffortEstimation(story, amount);
 }

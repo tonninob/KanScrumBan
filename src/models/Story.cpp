@@ -47,7 +47,16 @@ void Story::removeTask(Task* task) {
 
 string Story::tellStatus() {
 	if (_status == NULL)
-		return "No tasks";
+		return determineStatusBasedOnTaskStatuses();
 
 	return _status->describe();
+}
+
+string Story::determineStatusBasedOnTaskStatuses() {
+	ScrumWorkStatus::Started startedStatus;
+	for(std::vector<Task*>::iterator it = _tasks.begin(); it != _tasks.end(); it++)
+		if ((*it)->describeStatus().compare(startedStatus.describe()) == 0)
+			return startedStatus.describe();
+
+	return "No tasks";
 }

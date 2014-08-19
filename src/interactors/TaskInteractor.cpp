@@ -37,3 +37,12 @@ void TaskInteractor::addResponsibleToTask(Task& task, IResponsible* responsible)
 void TaskInteractor::removeResponsibleFromTask(Task& task, IResponsible* responsible) {
 	task.removeResponsible(responsible);
 }
+
+void TaskInteractor::setTaskStatus(Task* task,
+		ScrumWorkStatus::WorkStatus* status) {
+	task->setStatus(status);
+}
+
+void TaskInteractor::setTaskInitialEffortEstimation(Task& task, int amount) {
+	task.setInitialEffortEstimation(amount);
+}
