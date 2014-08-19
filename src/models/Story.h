@@ -10,6 +10,7 @@
 
 #include <string>
 #include "Task.h"
+#include "../status/all.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Story {
 	string _name;
 	int _initialEffortEstimation;
 	vector<Task*> _tasks;
+	ScrumWorkStatus::WorkStatus* _status;
 
 	string includeEstimationToDescription();
 	string includeTaskCountToDescription();
@@ -26,6 +28,12 @@ public:
 
 	string describe();
 	void addTask(Task *task);
+	void removeTask(Task *task);
+	string tellStatus();
+
+	void setStatus(ScrumWorkStatus::WorkStatus* status) {
+		_status = status;
+	}
 };
 
 #endif /* STORY_H_ */

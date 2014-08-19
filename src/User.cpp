@@ -56,4 +56,13 @@ void User::addTaskToStory(Story* story, Task* task) {
 }
 
 void User::removeTaskFromStory(Story* story, Task* task) {
+	_storyActor.removeTaskFromStory(story, task);
+}
+
+void User::completeStory(Story* story) {
+	story->setStatus(new ScrumWorkStatus::Completed);
+}
+
+void User::setTaskStatus(Task* task, ScrumWorkStatus::WorkStatus* status) {
+	task->setStatus(status);
 }

@@ -5,6 +5,7 @@
 #include "../src/interactors/TaskInteractor.h"
 #include "../src/interactors/StoryInteractor.h"
 #include "../src/exceptions/NoSuchTaskResponsible.h"
+#include "../src/exceptions/NoSuchTaskInStory.h"
 #include "../src/status/all.h"
 
 //using namespace std;
@@ -144,28 +145,28 @@ TEST_F(UserTest, UserCanCreateTaskWithNotStartedStatus)
 TEST_F(UserTest, UserCanChangeStatusToStarted)
 {
   Task* task = user->createTask("Buy coffee", 1, "", "");
-  task->setStatus(new ScrumWorkStatus::Started());
+  user->setTaskStatus(task, new ScrumWorkStatus::Started());
 	ASSERT_STREQ("Started", task->describeStatus().c_str());
 }
 
 TEST_F(UserTest, UserCanChangeStatusToOnHold)
 {
   Task* task = user->createTask("Buy coffee", 1, "", "");
-  task->setStatus(new ScrumWorkStatus::OnHold());
+  user->setTaskStatus(task, new ScrumWorkStatus::OnHold());
 	ASSERT_STREQ("On hold", task->describeStatus().c_str());
 }
 
 TEST_F(UserTest, UserCanChangeStatusToCompleted)
 {
   Task* task = user->createTask("Buy coffee", 1, "", "");
-  task->setStatus(new ScrumWorkStatus::Completed());
+  user->setTaskStatus(task, new ScrumWorkStatus::Completed());
 	ASSERT_STREQ("Completed", task->describeStatus().c_str());
 }
 
 TEST_F(UserTest, UserCanChangeStatusToRemoved)
 {
   Task* task = user->createTask("Buy coffee", 1, "", "");
-  task->setStatus(new ScrumWorkStatus::Removed());
+  user->setTaskStatus(task, new ScrumWorkStatus::Removed());
 	ASSERT_STREQ("Removed", task->describeStatus().c_str());
 }
 
@@ -197,4 +198,28 @@ TEST_F(UserTest, UserCanRemoveTaskFromStory)
   Story* story = user->createStory("Buy whiskey for birthday guy", 2);
   Task* task  = user->createTask("Collect money from team", 1, "", "", story);
   user->removeTaskFromStory(story, task);
+	ASSERT_STREQ("Buy whiskey for birthday guy (2) | Tasks: 0", story->describe().c_str());
+}
+
+TEST_F(UserTest, UserCantRemoveTaskFromStoryIfNotAdded)
+{
+  Story* story = user->createStory("Buy whiskey for birthday guy", 2);
+  Task* task  = user->createTask("Collect money from team", 1, "", "");
+
+	ASSERT_THROW(user->removeTaskFromStory(story, task), ScrumExceptions::NoSuchTaskInStory);
+//	ASSERT_STREQ("Task1", task->describe().c_str());
+}
+
+TEST_F(UserTest, UserCanChangeStoryStatusToCompleted) {
+	Story* story = user->createStory("Buy whiskey for birthday guy", 2);
+	user->completeStory(story);
+
+	ASSERT_STREQ("Completed", story->tellStatus().c_str());
+}
+
+//just story related, no user needed
+TEST(StoryTest, EmptyStoryHasStatusOfNoTasks) {
+	Story story("Buy whiskey for birthday guy", 2);
+
+	ASSERT_STREQ("No tasks", story.tellStatus().c_str());
 }

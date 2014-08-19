@@ -19,6 +19,7 @@ public:
 	virtual ~StoryInteractor();
 	Story* createStory(string name, int initialEffortEstimation);
 	void addTaskToStory(Story* story, Task* task);
+	void removeTaskFromStory(Story* story, Task* task);
 };
 
 #endif /* STORYINTERACTOR_H_ */

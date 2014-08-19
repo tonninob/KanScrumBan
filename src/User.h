@@ -14,6 +14,7 @@
 #include "interactors/StoryInteractor.h"
 #include "operators/IResponsible.h"
 #include "operators/IProductLineOperator.h"
+#include "status/all.h"
 
 class Task;
 class ProductLine;
@@ -32,6 +33,7 @@ public:
 	void addResponsibleToTask(Task& task, IResponsible* responsible);
 	void removeResponsibleFromTask(Task& task, IResponsible* responsible);
 	void deleteTask(Task& task);
+	void setTaskStatus(Task* task, ScrumWorkStatus::WorkStatus* status);
 	void setTaskWorkDoneAmount(Task& task, int amount);
 
 	virtual void assignTaskToProductLine(Task* task, ProductLine& line, ProductLineInteractor& actor);
@@ -42,6 +44,7 @@ public:
 	Story* createStory(std::string name, int initialEffortEstimation=0);
 	void addTaskToStory(Story* story, Task* task);
 	void removeTaskFromStory(Story* story, Task* task);
+	void completeStory(Story* story);
 };
 
 

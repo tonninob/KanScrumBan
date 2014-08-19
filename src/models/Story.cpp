@@ -7,13 +7,16 @@
 
 #include "Story.h"
 #include "../utils/string.cpp"
+#include "../exceptions/NoSuchTaskInStory.h"
 
 Story::Story(string name, int initialEffortEstimation) :
 	_name(name), _initialEffortEstimation(initialEffortEstimation) {
+	_status = NULL;
 }
 
 Story::~Story() {
 	_tasks.clear();
+	delete _status;
 }
 
 string Story::describe() {
@@ -31,4 +34,20 @@ string Story::includeTaskCountToDescription() {
 
 void Story::addTask(Task* task) {
 	_tasks.push_back(task);
+}
+
+void Story::removeTask(Task* task) {
+	for(std::vector<Task*>::iterator it = _tasks.begin(); it != _tasks.end(); it++)
+		 if ((*it) == task) {
+			 it = _tasks.erase(it);
+			 return;
+		 }
+	throw ScrumExceptions::NoSuchTaskInStory();
+}
+
+string Story::tellStatus() {
+	if (_status == NULL)
+		return "No tasks";
+
+	return _status->describe();
 }
