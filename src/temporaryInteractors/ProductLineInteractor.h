@@ -9,17 +9,15 @@
 #define PRODUCTLINEINTERACTOR_H_
 
 #include <vector>
-#include "../models/ProductLine.h"
+#include "../domain/models/ProductLine.h"
+#include "../domain/interactors/IProductLineInteractor.h"
 
-class ProductLineInteractor {
-public:
-	std::vector<ProductLine*> _lines;
+class ProductLineInteractor : public IProductLineInteractor {
 public:
 	ProductLine* createLine();
 	int getLineCount();
 	void assignTaskToLine(Task* task, ProductLine& line);
 
-	virtual ~ProductLineInteractor();
 };
 
 #endif /* PRODUCTLINEINTERACTOR_H_ */

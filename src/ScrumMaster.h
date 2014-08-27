@@ -10,10 +10,10 @@
 
 #include <string>
 #include "User.h"
-#include "interactors/SprintInteractor.h"
-#include "interactors/TaskInteractor.h"
-#include "interactors/ProductLineInteractor.h"
-#include "interactors/StoryInteractor.h"
+#include "domain/interactors/ISprintInteractor.h"
+#include "domain/interactors/ITaskInteractor.h"
+#include "domain/interactors/IProductLineInteractor.h"
+#include "domain/interactors/IStoryInteractor.h"
 
 class Sprint;
 class ProductLine;
@@ -21,12 +21,12 @@ class ProductLine;
 using namespace std;
 
 class ScrumMaster : public User {
-	SprintInteractor& _sprintactor;
-	ProductLineInteractor& _lineactor;
+	ISprintInteractor& _sprintactor;
+	IProductLineInteractor& _lineactor;
 	string _name;
 public:
-	ScrumMaster(SprintInteractor& sprintactor, ProductLineInteractor& lineactor,
-			TaskInteractor& actor, StoryInteractor& storyActor, string name);
+	ScrumMaster(ISprintInteractor& sprintactor, IProductLineInteractor& lineactor,
+			ITaskInteractor& actor, IStoryInteractor& storyActor, string name);
 	Sprint* createSprint();
 	ProductLine* createProductLine();
 };

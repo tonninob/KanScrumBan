@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
 //#include "hippomocks.h"
 #include "../src/ScrumMaster.h"
-#include "../src/interactors/SprintInteractor.h"
-#include "../src/interactors/TaskInteractor.h"
-#include "../src/interactors/ProductLineInteractor.h"
-#include "../src/exceptions/NoSuchTaskResponsible.h"
+#include "../src/temporaryInteractors/SprintInteractor.h"
+#include "../src/temporaryInteractors/TaskInteractor.h"
+#include "../src/temporaryInteractors/StoryInteractor.h"
+#include "../src/temporaryInteractors/ProductLineInteractor.h"
+#include "../src/domain/exceptions/NoSuchTaskResponsible.h"
 
 //using namespace std;
 class ScrumMasterTest : public testing::Test {

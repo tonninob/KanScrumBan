@@ -7,12 +7,13 @@
 #include <gtest/gtest.h>
 //#include "hippomocks.h"
 #include "../src/User.h"
-#include "../src/models/ProductLine.h"
-#include "../src/interactors/TaskInteractor.h"
-#include "../src/interactors/StoryInteractor.h"
-#include "../src/exceptions/NoSuchTaskResponsible.h"
-#include "../src/exceptions/NoSuchTaskInStory.h"
-#include "../src/status/all.h"
+#include "../src/domain/models/Story.h"
+#include "../src/domain/models/ProductLine.h"
+#include "../src/temporaryInteractors/TaskInteractor.h"
+#include "../src/temporaryInteractors/StoryInteractor.h"
+#include "../src/domain/exceptions/NoSuchTaskResponsible.h"
+#include "../src/domain/exceptions/NoSuchTaskInStory.h"
+#include "../src/domain/status/all.h"
 
 TEST(StoryTest, EmptyStoryHasStatusOfNoTasks) {
 	Story story("Buy whiskey for birthday guy", 2);

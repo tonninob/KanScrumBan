@@ -10,12 +10,12 @@
 
 class Task;
 class ProductLine;
-class ProductLineInteractor;
+class IProductLineInteractor;
 
 class IProductLineOperator {
 public:
 	virtual ~IProductLineOperator() {};
-	virtual void assignTaskToProductLine(Task* task, ProductLine& line, ProductLineInteractor& actor) = 0;
+	virtual void assignTaskToProductLine(Task* task, ProductLine& line, IProductLineInteractor& actor) = 0;
 };
 
 #endif /* PRODUCTLINEOPERATOR_H_ */

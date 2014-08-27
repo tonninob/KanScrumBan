@@ -9,12 +9,12 @@
 #define USER_H_
 
 #include <string>
-#include "interactors/TaskInteractor.h"
-#include "interactors/ProductLineInteractor.h"
-#include "interactors/StoryInteractor.h"
-#include "operators/IResponsible.h"
-#include "operators/IProductLineOperator.h"
-#include "status/all.h"
+#include "domain/interactors/ITaskInteractor.h"
+#include "domain/interactors/IProductLineInteractor.h"
+#include "domain/interactors/IStoryInteractor.h"
+#include "domain/operators/IResponsible.h"
+#include "domain/operators/IProductLineOperator.h"
+#include "domain/status/all.h"
 
 class Task;
 class ProductLine;
@@ -23,11 +23,11 @@ class Story;
 class User : public IResponsible, public IProductLineOperator
 {
 protected:
-	TaskInteractor& _taskActor;
-	StoryInteractor& _storyActor;
+	ITaskInteractor& _taskActor;
+	IStoryInteractor& _storyActor;
 	std::string _name;
 public:
-	User(TaskInteractor& actor, StoryInteractor& storyActor, std::string name) : _taskActor(actor), _storyActor(storyActor), _name(name) {};
+	User(ITaskInteractor& actor, IStoryInteractor& storyActor, std::string name) : _taskActor(actor), _storyActor(storyActor), _name(name) {};
 	Task* createTask(std::string name, int initialEstimation=0, std::string featureId="", std::string internalId="", Story* story=NULL);
 	void renameTask(Task& task, std::string name);
 	void addResponsibleToTask(Task& task, IResponsible* responsible);
@@ -37,7 +37,7 @@ public:
 	void setTaskWorkDoneAmount(Task& task, int amount);
 	void setTaskInitialEffortEstimation(Task& task, int amount);
 
-	virtual void assignTaskToProductLine(Task* task, ProductLine& line, ProductLineInteractor& actor);
+	virtual void assignTaskToProductLine(Task* task, ProductLine& line, IProductLineInteractor& actor);
 
 	virtual std::string tellName() { return _name; }
 	virtual bool operator== (IResponsible& compareto);

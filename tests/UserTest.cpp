@@ -1,12 +1,14 @@
 #include <gtest/gtest.h>
 //#include "hippomocks.h"
 #include "../src/User.h"
-#include "../src/models/ProductLine.h"
-#include "../src/interactors/TaskInteractor.h"
-#include "../src/interactors/StoryInteractor.h"
-#include "../src/exceptions/NoSuchTaskResponsible.h"
-#include "../src/exceptions/NoSuchTaskInStory.h"
-#include "../src/status/all.h"
+#include "../src/domain/models/ProductLine.h"
+#include "../src/domain/models/Story.h"
+#include "../src/temporaryInteractors/TaskInteractor.h"
+#include "../src/temporaryInteractors/ProductLineInteractor.h"
+#include "../src/temporaryInteractors/StoryInteractor.h"
+#include "../src/domain/exceptions/NoSuchTaskResponsible.h"
+#include "../src/domain/exceptions/NoSuchTaskInStory.h"
+#include "../src/domain/status/all.h"
 
 //using namespace std;
 class UserTest : public testing::Test {
@@ -228,3 +230,4 @@ TEST_F(UserTest, UserEditStoryInitialEffortEstimation) {
   user->setStoryInitialEffortEstimation(story, 3);
 	ASSERT_STREQ("Buy whiskey for birthday guy (3) | Tasks: 0", story->describe().c_str());
 }
+

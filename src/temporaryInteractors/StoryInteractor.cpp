@@ -7,9 +7,6 @@
 
 #include "StoryInteractor.h"
 
-StoryInteractor::~StoryInteractor() {
-}
-
 Story* StoryInteractor::createStory(std::string name,
 		int initialEffortEstimation) {
 	return new Story(name, initialEffortEstimation);

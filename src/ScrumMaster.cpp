@@ -9,8 +9,8 @@
 
 using namespace std;
 
-ScrumMaster::ScrumMaster(SprintInteractor& sprintactor, ProductLineInteractor& lineactor,
-		TaskInteractor& taskactor, StoryInteractor& storyActor, string name) : User(taskactor, storyActor, name),
+ScrumMaster::ScrumMaster(ISprintInteractor& sprintactor, IProductLineInteractor& lineactor,
+		ITaskInteractor& taskactor, IStoryInteractor& storyActor, string name) : User(taskactor, storyActor, name),
 		_sprintactor(sprintactor),
 		_lineactor(lineactor),
 		_name(name) {

@@ -43,7 +43,7 @@ bool User::operator== (IResponsible& compareto) {
 }
 
 void User::assignTaskToProductLine(Task* task, ProductLine& line,
-		ProductLineInteractor& actor) {
+		IProductLineInteractor& actor) {
 	actor.assignTaskToLine(task, line);
 }
 

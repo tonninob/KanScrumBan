@@ -13,13 +13,11 @@
 #include <algorithm>
 #include <map>
 //#include "../operators/IResponsible.h"
-#include "../models/Task.h"
+#include "../domain/interactors/ITaskInteractor.h"
 
 class IResponsible;
 
-class TaskInteractor {
-	std::vector<Task*> _tasks;
-	//std::map<int, std::vector<IResponsible> _tasksResponsibles>;  //should we use pointers or not?
+class TaskInteractor : public ITaskInteractor {
 
 public:
 	int getTaskCount() {return _tasks.size();};
@@ -33,13 +31,6 @@ public:
 	void addResponsibleToTask(Task& task, IResponsible* responsible);
 	void removeResponsibleFromTask(Task& task, IResponsible* responsible);
 
-	virtual ~TaskInteractor() {
-		for(std::vector<Task*>::const_iterator it = _tasks.begin(); it != _tasks.end(); it++)
-		{
-		    delete *it;
-		}
-		_tasks.clear();
-	};
 };
 
 #endif /* TASKINTERACTOR_H_ */

@@ -8,15 +8,16 @@
 #ifndef STORYINTERACTOR_H_
 #define STORYINTERACTOR_H_
 
-#include "../models/Story.h"
+//#include "../models/Story.h"
+//
+//class Task;
 
-class Task;
+#include "../domain/interactors/IStoryInteractor.h"
 
 using namespace std;
 
-class StoryInteractor {
+class StoryInteractor : public IStoryInteractor{
 public:
-	virtual ~StoryInteractor();
 	Story* createStory(string name, int initialEffortEstimation);
 	void addTaskToStory(Story* story, Task* task);
 	void removeTaskFromStory(Story* story, Task* task);
